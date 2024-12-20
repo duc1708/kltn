@@ -1,0 +1,258 @@
+
+
+/* CSS for header-top */
+.header .header-top .row{
+    width: 100%;
+}
+
+.header .header-top  svg{
+    font-size: 30px;
+    margin-top: 10px;
+    margin-right: 20px;
+}
+
+.header .header-top .header-adress p{
+    opacity: 0.8;
+    width: 400px;
+}
+
+.header .header-top .header-icon{
+    text-align: center;
+}
+
+.header .header-top .header-icon img{
+    width: 50%;
+    
+}
+
+.header .header-top .header-phone{
+    float: right;
+}
+.header .header-top .header-phone{
+    opacity: 0.8;
+}
+/* CSS for header-bottom */
+
+/* Khi cuộn tới phần header-bottom */
+.header-bottom.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* z-index: 1000; */
+    background-color: var(--black-color); /* Đảm bảo màu nền */
+}
+
+.header-bottom{
+    height: 70px;
+    background-color: var(--black-color);
+}
+
+.header-bottom .navbar-left, .navbar-right {
+    margin-top: 10px;
+}
+
+.header-bottom  ul li{
+    list-style: none;
+    padding: 0px 15px 0px 15px;
+    color: var(--white-color);
+
+}
+
+.header-bottom .navbar-left ul li a{
+    color: var(--white-color);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 13px;
+}
+
+.header-bottom ul svg:hover{
+    cursor: pointer;
+}
+
+.header-bottom .navbar-left ul.nav-menu  {
+    padding-left: 0px;
+}
+.header-bottom .navbar-left ul svg{
+    font-size: 25px;
+}
+
+.header-bottom .navbar-right{
+    margin-left: 300px;
+}
+.header-bottom .navbar-right ul svg{
+    font-size: 25px;
+}
+
+.header-bottom .navbar-right ul .icon svg{
+    border-radius: 100%;
+    height: 40px;
+    width: 40px;
+    padding: 8px 8px 8px 8px;
+    background-color: var(--white-color);
+    color: var(--black-color);
+}
+
+/* CSS For Modal */
+/* Slow Slide-in from Left Animation */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%); /* Start from the right */
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.modal.result-research .modal-dialog {
+    animation: slideInRight 2s ease forwards; /* Slow duration for smooth entry */
+    transition: transform 2s ease, opacity 2s ease; /* Ensure no conflict with default styles */
+}
+
+.modal-content {
+    position: relative;
+    left: 590px;
+    top: -30px;
+    width: 340px;
+    height: 100vh;
+    background-color: black;
+    color: #fff;
+}
+
+/* Custom backdrop style */
+.modal-backdrop.show {
+    background-color: rgba(0, 0, 0, 0.9); /* Set backdrop color to black with 90% opacity */
+}
+
+/* Custom modal content style */
+.result-research .modal-content {
+    background-color: rgba(0, 0, 0, 0.9);
+    border: none; /* Remove border if needed */
+    color: #fff; /* Change text color to white for contrast */
+}
+
+label.form-label {
+    font-size: 12px;
+}
+
+ul li{
+    list-style: none;
+}
+
+ul li:hover{
+    opacity: 0.5;
+    color: #30b566;
+}
+
+.account-options ul li{
+    margin-top: 20px;
+}
+
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation0.MuiAlert-root.MuiAlert-colorSuccess.MuiAlert-standardSuccess.MuiAlert-standard.css-7y9k7a-MuiPaper-root-MuiAlert-root {
+    width: 455px;
+    position: absolute;
+}
+
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation0.MuiAlert-root.MuiAlert-colorWarning.MuiAlert-standardWarning.MuiAlert-standard.css-10cv5sc-MuiPaper-root-MuiAlert-root {
+    width: 455px;
+    position: absolute;
+    z-index: 10000;
+}
+
+/* .result-research {
+        position: relative;
+        height: 100vh;
+        background-color: black;
+        color: #fff;
+} */
+
+.result-research .modal-content {
+    background-color: rgba(0, 0, 0, 1);
+    border: none;
+    color: #fff;
+    width: 1400px;
+    position: relative;
+    left: -435px;
+    top: 135px;
+    height: 83vh;
+}
+
+.result-research .modal-content  .scrollable-list {
+    max-height: 300px; /* Giới hạn chiều cao */
+    overflow-y: auto;  /* Kích hoạt cuộn dọc */
+    overflow-x: hidden; /* Ẩn cuộn ngang */
+    scrollbar-width: thin; /* Tùy chỉnh thanh cuộn (Firefox) */
+    scrollbar-color: #ccc #f9f9f9; /* Màu thanh cuộn (Firefox) */
+}
+
+/* Tùy chỉnh thanh cuộn cho trình duyệt Webkit (Chrome, Edge, Safari) */
+.result-research .modal-content  .scrollable-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.result-research .modal-content  .scrollable-list::-webkit-scrollbar-thumb {
+    background-color: #ccc; /* Màu thanh trượt */
+    border-radius: 4px;
+}
+
+.result-research .modal-content  .scrollable-list::-webkit-scrollbar-track {
+    background: #f9f9f9; /* Màu nền của vùng cuộn */
+}
+
+
+.result-research .modal-content .modal-header{
+    border-bottom: 0.5px solid #333;
+}
+
+.result-research .modal-content .modal-footer{
+    border-top: none;
+}
+
+.result-research .modal-content .modal-header #search-products{
+    width: 100%;
+    height: 64px;
+    background: #000;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center; /* Căn giữa placeholder */
+    transition: border-color 0.3s ease; /* Hiệu ứng mượt */
+}
+
+.result-research .modal-content .modal-body #product-search:hover{
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+#search-products:focus {
+    outline: none; /* Loại bỏ viền khi focus */
+    border-color: transparent; /* Loại bỏ đường viền khi nhấn vào */
+}
+
+
+.order {
+    scrollbar-width: thin; /* Dành cho Firefox */
+    scrollbar-color: darkgray lightgray; /* Dành cho Firefox */
+}
+
+.order::-webkit-scrollbar {
+    width: 8px;
+}
+
+.order::-webkit-scrollbar-thumb {
+    background-color: darkgray;
+    border-radius: 4px;
+}
+
+.order::-webkit-scrollbar-track {
+    background-color: lightgray;
+}
+
+.order img {
+    width: 100px;
+    height: auto;
+    border-radius: 5px;
+}

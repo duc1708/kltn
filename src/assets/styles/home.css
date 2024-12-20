@@ -1,0 +1,117 @@
+.slider-home{
+    margin-top: 50px;
+    background-image: url('../images/images_home/background_slider.jpg');
+    background-size: 100%;
+    height: 70vh;
+    background-repeat: no-repeat;
+    border-radius:10px;
+}
+
+.slider-home .text{
+    padding-left: 70px;
+    padding-top: 50px;
+    color: var(--white-color);
+}
+
+.slider-home .text h6{
+    margin: 40px 0px 40px 0px;
+}
+
+.slider-home .shop-now{
+    background-color: var(--background-color-btn);
+    color: var(--white-color);
+    border: none;
+    height: 40px;
+    width: 100px;
+    border-radius: 30px;
+}
+
+/* CSS FOR CONTENT-HOME */
+
+.content-home .products-hot h4{
+    margin: 20px 0px 20px 0px;
+}
+
+
+
+/* content-home speakers */
+/* css for intro speakers */
+.content-home .content-home-speakers{
+    background-color: var(--white-color);
+}
+.content-home .content-home-speakers img{
+    width: 100%;
+}
+
+.content-home .content-home-speakers .intro-speakers .text-speakers {
+    margin-top: 150px;
+}
+
+.content-home .content-home-speakers .intro-speakers .text-speakers h1{
+    font-size: 60px;
+}
+
+.content-home .viewmore{
+    width: 200px;
+    background-color: var(--background-color-btn);
+    color: var(--white-color);
+    height: 50px;
+    border: none;
+}
+
+/* css for speakers new products */
+
+.content-home .content-home-speakers .new-speakers{
+    margin-top: 100px;
+    background-color: var(--background-color);
+}
+
+.content-home .content-home-speakers .new-speakers{
+    padding-top: 100px;
+}
+
+.content-home .content-home-speakers .new-speakers h1{
+    margin-bottom: 50px;
+}
+
+.content-home .content-home-speakers  .speaker-home{
+    background-color: #413f3a;
+}
+
+.content-home .content-home-speakers  .speaker-home .intro-speakers{
+    margin-bottom: 100px;
+}
+
+.content-home .content-home-speakers  .speaker-home .intro-speakers .text-speakers{
+    color: var(--white-color);
+}
+
+.content-home .content-home-speakers .new-speakers .product-new-speakers .status{
+    background-color: rgb(7, 109, 7);
+}
+
+.content-home .content-home-speakers .speaker-home  .row{
+    padding: 0px 20px 0px 20px;
+}
+/* Ears Phone */
+.content-home-earsphone{
+    padding-top: 100px;
+}
+.content-home-earsphone .intro-earsphone{
+    background-color: var(--white-color);
+    padding-top: 100px;
+}
+
+.content-home-earsphone .list-headphones img {
+    width: 100%;
+    height: 40vh ;
+}
+
+.content-home-earsphone .intro-earsphone img{
+    width: 100%;
+}
+
+/* CSS accessory */
+.content-home .content-home-accessory .products-accessory button{
+    display: none;
+}

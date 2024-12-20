@@ -1,0 +1,142 @@
+
+  
+  
+:root {
+    --white-color: #fff;
+    --black-color:#000;
+    --background-color: rgb(246 246 246);
+    --background-color-btn: #000;
+    --background-footer: #0f0f0f;
+}
+
+.w-100{
+    width: 100%;
+}
+
+.f-500{
+    font-weight: 500;
+}
+
+.inline-flex{
+    display: inline-flex;
+}
+
+.wrapper{
+    margin:10px 20px 0px 20px
+}
+
+.content{
+    background-color: var(--background-color);
+}
+
+.homePage{
+    height: 2000px;
+}
+
+.choose{
+    color: var(--white-color);
+    margin-left: 20px;
+    background-color: var(--background-color-btn);
+    width: 80%;
+    height: 50px;
+    border: none;
+    margin-bottom: 50px;
+}
+
+.status , .promotion{
+    border: none;
+    
+    color: var(--white-color);
+    border-radius: 20px;
+    width: 50px;
+    font-weight: 500;
+    margin-top: 10px;
+    margin-left: 20px;
+    height: 23px;
+    font-size: 13px;
+}
+
+.promotion{
+    background-color: #000;
+}
+
+/* Css for ShowProducts */
+.product{
+    margin-bottom: 50px;
+    background-color: var(--white-color);
+    border-radius: 17px;
+}
+.product img{
+    width: 100%;
+}
+
+.product .infor-product{
+    margin-left: 20px;
+}
+
+.product .infor-product i{
+    opacity: 0.5;
+}
+
+.product .infor-product p{
+    font-size: 16px;
+    font-weight: 500;
+    height: 40px;
+}
+
+.product .infor-product .star svg{
+    color: rgb(238, 238, 104);
+}
+
+/* CSS for Show List Categorize */
+
+.categorizes .list-categorize img{
+    width: 50%;
+}
+
+.categorizes .list-categorize img:hover{
+    cursor: pointer;
+    
+}
+
+.categorizes .list-categorize{
+    background-color: var(--white-color);
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.categorizes .list-categorize  .categorize {
+    width: 20%;
+}
+
+.categorizes .list-categorize  .categorize h6 , p{
+    margin-left: 10px;
+    margin-top: 20px;
+}
+/* Css for ShowProductsofCaregorize */
+
+
+/* 
+
+*/
+
+.register-page 
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation0.MuiAlert-root.MuiAlert-colorSuccess.MuiAlert-standardSuccess.MuiAlert-standard.css-7y9k7a-MuiPaper-root-MuiAlert-root {
+    /* position: sticky; */
+    /* top: -226px; */
+    margin-top: -560px;
+    margin-left: 893px;
+}
+
+.register-page  .MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation0.MuiAlert-root.MuiAlert-colorWarning.MuiAlert-standardWarning.MuiAlert-standard.css-10cv5sc-MuiPaper-root-MuiAlert-root {
+    margin-top: -560px;
+    margin-left: 893px;
+}
+
+/* CSS for wishlist */
+
+/* CSS for ChartAI */
+div.chat-wrapper[opened="true"] {
+    position: relative;
+    top: 300px;
+}

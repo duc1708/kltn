@@ -1,0 +1,53 @@
+.blog_content{
+    background-color: #f6f6f6;
+}
+
+.blog_content .left_blog_content{
+    width: 70%;
+    
+}
+
+.blog_content .left_blog_content .row{
+    margin-top: 50px;
+}
+
+.blog_content .left_blog_content .col-sm-4{
+    margin-top: 20px;
+}
+
+.blog_content .card {
+    border: none;
+    background-color: #fff;
+}
+
+.blog_content .card-footer {
+    border: none;
+    background: #fff;
+}
+
+.image-container {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .image-container img {
+    transition: transform 0.6s ease;
+  }
+  
+  .image-container:hover img {
+    transform: scale(1.2); /* Phóng to ảnh lên 120% */
+    cursor: pointer;
+  }
+  
+  /* Đảm bảo ảnh không tràn ra khỏi .image-container */
+  .image-container img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/*  */
+.blog_content .right_blog_content{
+    width: 26%;
+    margin-left: 30px;
+    margin-top: 70px;
+}

@@ -1,0 +1,129 @@
+.infor-page .description{
+    margin-top: 50px;
+}
+
+.infor-page .description .tab-content {
+    margin-top: 20px;
+}
+
+.anhdd{
+    width: 100%;
+}
+
+.infor-page .description .star{
+    color: rgb(238, 238, 104);
+}
+
+.infor-page .description .experience{
+    padding: 20px 20px 20px 20px;
+    background-color: #1C61E71A;
+    margin: 10px 0px 10px 0px;
+    border-radius: 5px;
+}
+
+.infor-page .description .experience img{
+    width: 5%;
+}
+
+.infor-page .description button{
+    border: none;
+    height: 45px;
+    width: 250px;
+    color: var(--white-color);
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+.infor-page .description .add-cart{
+    background-color: var(--background-color-btn);
+}
+
+.infor-page .description .buy-now{
+    background-color: rgb(107, 163, 49);
+    
+}
+
+/*Css phần product-detail*/
+
+.infor-page .product-detail{
+    color: var(--white-color);
+    background-color: var(--background-color);
+    padding: 10px 0px 10px 10px;
+}
+
+.infor-page .product-detail .left{
+    background-color: var(--black-color);
+    padding: 30px 30px 30px 20px ;
+    border-radius: 5px;
+    width: 60%;
+    margin-right: 20px;
+}
+
+.infor-page .product-detail .left h4{
+    margin-top: 20px;
+}
+
+.infor-page .product-detail .left img{
+    border-radius: 10px;
+}
+
+.infor-page .product-detail .left p{
+    color: #DDDDDD;
+}
+
+.infor-page .product-detail .right{
+    background-color: var(--white-color);
+    width: 38%;
+    padding: 30px 30px 30px 20px;
+    border-radius: 5px;
+}
+
+.infor-page .product-detail .right{
+    color: var(--black-color);
+}
+
+.infor-page .product-detail .right h4{
+    margin-bottom: 20px;
+}
+
+.infor-page .product-detail .right img{
+    margin-right: 20px;
+}
+
+.product-detail .left {
+    max-height: 150vh; /* Adjust as needed */
+    overflow-y: scroll; /* Allow vertical scrolling */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer and Edge */
+}
+
+.product-detail .left::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+}
+
+
+.product-detail .right {
+    max-height: 150vh; /* Control when the right column stops */
+    overflow-y: hidden; /* Prevent scrolling on right */
+}
+
+.delivery img{
+    margin-right: 20px;
+}
+
+.delivery-top, .delivery-bottom {
+    border: 1px solid rgba(158, 148, 148, 0.5); /* Đặt opacity cho border */
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+
+.wishlist :hover{
+    opacity:0.5;
+}
+
+
+.compare :hover{
+    opacity:0.5;
+}

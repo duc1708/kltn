@@ -1,0 +1,64 @@
+.cartshop-page navbar{
+    margin: 40px 0px 45px 0px;
+    background: #000;
+    height: 153px;
+    color: #fff;
+    border-radius: 16px;
+    width: 100%;
+    padding: 62px 10px 0px 19px;
+}
+
+button#simple-tab-0 , button#simple-tab-1, button#simple-tab-2 {
+    color: #fff;
+    margin-top: 50px;
+}
+
+.tab-payment{
+    background: #000;
+    height: 150px;
+    color: #fff;
+}
+
+.tab-payment svg {
+    margin-top: 66px;
+}
+
+.cart .col-sm-8 {
+    padding: 20px 20px 20px 20px;
+    background: #fff;
+}
+
+.infor-cart .quantity button {
+    height: 30px;
+    width: 33px;
+    margin-left: 4px;
+    margin-right: 5px;
+    border: none;
+}
+
+.cart .cart-total {
+    background: #fff;
+    padding: 20px 0px 10px 20px;
+}
+
+.cart .cart-total .checkout {
+    background: #000;
+    width: 100%;
+    border:none;
+    color:var(--white-color);
+    height: 50px;
+}
+
+/* CSS for Payment- Page */
+.infor-payment{
+    background-color: #fff;
+    padding: 20px 20px 20px 20px;
+}
+
+.infor-payment button {
+    border: none;
+    color: #fff;
+    background: #000;
+    height: 40px;
+    margin: 10px;
+}

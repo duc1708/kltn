@@ -1,0 +1,73 @@
+.auth-page .register{
+    padding: 150px 100px 150px 130px;
+}
+
+button#verifyOtp {
+    border: none;
+    background: #000;
+    color: #fff;
+    width: 300px;
+    height: 50px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+#login, #register{
+    background-color: var(--background-color-btn);
+    color: var(--white-color);
+    width: 300px;
+    height: 50px;
+    border: none;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* Css for  dashboard*/
+.profile-user{
+    padding:100px 50px 100px 50px;
+}
+
+.profile-user img{
+    width: 100%;
+    margin-top: 50px;
+}
+
+#choose-img{
+    border: 1px solid #c5bfbf ;
+    width:100px;
+    margin: 30px 0px 30px 100px;
+    height:40px;
+    background:#fff;
+}
+
+.profile-user .left-profile {
+    border: 1px solid #c5bfbf;
+    padding: 20px 10px 10px 10px;
+}
+
+
+.profile-user .right-profile label.form-label {
+    font-size: 15px;
+}
+
+.dashboard .MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation0.MuiAlert-root.MuiAlert-colorSuccess.MuiAlert-standardSuccess.MuiAlert-standard.css-7y9k7a-MuiPaper-root-MuiAlert-root {
+        position: fixed;
+        top: 0;
+        left: 895px;
+        z-index: 1000;
+}
+
+/* Css for forgotpassword */
+
+.auth-page .register .MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation0.MuiAlert-root.MuiAlert-colorSuccess.MuiAlert-standardSuccess.MuiAlert-standard.css-7y9k7a-MuiPaper-root-MuiAlert-root,
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation0.MuiAlert-root.MuiAlert-colorError.MuiAlert-standardError.MuiAlert-standard.css-3lhuho-MuiPaper-root-MuiAlert-root {
+    width: 100%;
+    position: relative;
+    top: -50px;
+}
+
+
+#err-pass, #success-pass {
+    position: relative;
+    top: 446px;
+}
