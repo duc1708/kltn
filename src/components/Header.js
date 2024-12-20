@@ -153,6 +153,10 @@
             handleClose();
         }
 
+        const handleOrder = ()=>{
+            navigate('/order');
+            handleClose();
+        }
         useEffect(() => {
             axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}products`)
                 .then(response => {
@@ -303,7 +307,7 @@
                                                                     <li style={{ cursor: 'pointer' }} onClick={handleDashboard}>Trang tài khoản</li>
                                                                     <li style={{ cursor: 'pointer' }} onClick={handleAddWishList}>Đơn hàng yêu thích</li>
                                                                     <li style={{ cursor: 'pointer' }} onClick={handleCartshop}>Giỏ hàng của bạn</li>
-                                                                    <li style={{ cursor: 'pointer' }} >Đơn hàng đã đặt</li>
+                                                                    <li style={{ cursor: 'pointer' }} onClick={handleOrder} >Đơn hàng đã đặt</li>
                                                                     <li onClick={handleLogout} style={{ cursor: 'pointer' }}>Đăng xuất</li>
                                                                 </ul>
                                                                 <FaUser style={{ fontSize: '70px', marginLeft: '120px' }} />
