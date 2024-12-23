@@ -8,7 +8,11 @@ const Blog = () => {
   const [data, setData] = useState([]);
     useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URL_MARSHALL}blogs`)
+      .get(`${process.env.REACT_APP_API_URL_MARSHALL}blogs`, {
+        headers: {
+            'ngrok-skip-browser-warning': 'true',
+        },
+    })
       .then((response) => setData(response.data));
   }, []);
   return (

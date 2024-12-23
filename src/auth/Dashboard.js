@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Alert, AlertTitle } from '@mui/material';
 import '../assets/styles/auth.css';
 
+
 const Dashboard = () => {
     const [tenKh, setTenKh] = useState('');
     const [avt, setAvt] = useState('');
@@ -127,6 +128,8 @@ const Dashboard = () => {
         }
     };
 
+    console.log('url',avt)
+
     return (
         <div className='dashboard content'>
             <div className='wrapper'>
@@ -141,7 +144,9 @@ const Dashboard = () => {
                     <Row>
                     <Col className='left-profile' sm={3}>
                         <h4 style={{ textAlign: 'center' }}>TÀI KHOẢN</h4><hr />
-                        <img src={avt} alt="User Avatar" /><br />
+                        <img src={`/avatar_user/${avt}`} alt="User Avatar" />
+                        <br />
+                        
                         <button 
                             type="file" 
                             id="choose-img" 

@@ -10,7 +10,11 @@ export default function CartShop() {
     const maKh = localStorage.getItem('maKh');
     // Fetch data from API
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}products/orders`)
+        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}products/orders`, {
+            headers: {
+                'ngrok-skip-browser-warning': 'true',
+            },
+        })
             .then(response => {
                 setCartItems(response.data);
             })
@@ -21,13 +25,12 @@ export default function CartShop() {
 
     console.log('oder của bạn',cartItems);
     const filteredItems = cartItems.filter(item => item.maKh === parseInt(maKh));
-    const total = filteredItems.reduce((subtotal, item) => subtotal + (item.giaTien * item.soLuong), 0);
   return (
     <div className='cart content'>
         <div className='wrapper'>
                 <div>
                     <Row>
-                        <Col sm={8}>
+                        <Col sm={12}>
                             {filteredItems.length === 0 ? (
                             <p>No items in the cart.</p>
                             ) : (   
@@ -37,10 +40,12 @@ export default function CartShop() {
                                     <ProgressBar style={{height:'7px',marginTop:'20px'}} striped variant="dark" now={100} />
                                 </div>
                                 <div style={{marginLeft: '114px', marginTop:'20px'}} className='inline-flex'>
-                                    <h6 style={{width: '200px'}}>PRODUCT</h6>
-                                    <h6 style={{width: '200px'}}>PRICE</h6>
-                                    <h6 style={{width: '200px'}}>QUANTITY</h6>
-                                    <h6 style={{width: '200px'}}>SUBTOTAL</h6>
+                                    <h6 style={{width: '200px'}}>Sản phẩm</h6>
+                                    <h6 style={{width: '200px'}}>Giá</h6>
+                                    <h6 style={{width: '200px'}}>Số lượng</h6>
+                                    <h6 style={{width: '200px'}}>Thành tiền</h6>
+                                    <h6 style={{width: '100px'}}>Trạng thái</h6>
+                                    <h6 style={{width: '200px'}}>Dự kiến ngày giao</h6>
                                 </div>
                                 {filteredItems.map((item, index) => (
                                     <div>
@@ -48,36 +53,19 @@ export default function CartShop() {
                                             <img
                                                 src={item.anhDD || 'placeholder-image-url.jpg'}
                                                 alt={item.tenSP || 'No Name'}
-                                                style={{ width: '80px', height: 'auto' }}
+                                                style={{ width: '80px', height: 'auto', marginRight:'20px' }}
                                             />
                                             <h6 style={{width: '200px', marginTop: '30px'}}>{item.tenSP}</h6>
                                             <p style={{fontSize:'13px', width: '200px', marginTop: '30px'}}>{item.giaTien?.toLocaleString() || '0'} ₫</p>
-                                            <span>{item.soLuong || 0}</span>
-                                            <p style={{fontSize:'13px',width: '200px', marginTop: '30px'}}>{(item.giaTien * item.soLuong)?.toLocaleString() || '0'} ₫</p>
+                                            <span style={{fontSize:'13px',marginTop:'30px', marginLeft:'40px'}}>{item.soLuong || 0}</span>
+                                            <p style={{fontSize:'13px',width: '200px', marginTop: '30px',marginLeft:'160px'}}>{(item.giaTien * item.soLuong)?.toLocaleString() || '0'} ₫</p>
+                                            <p style={{fontSize:'13px', width: '100px', marginTop: '30px'}}>{item.trangThai}</p>
+                                            <p style={{fontSize:'13px', width: '200px', marginTop: '30px'}}>{item.ngayGiao || 'Chờ xác nhận'}</p>
                                         </div>
                                     </div>
                                 ))}
                             </div>
                             )}
-                        </Col>
-                        <Col sm={4}>
-                            <div className='cart-total'>
-                                <h3 style={{marginBottom:'50px'}}>Cart Totals</h3>
-                                <div className='inline-flex'>
-                                    <h6>Subtotal</h6>
-                                    <p style={{marginLeft:'200px'}}>{total.toLocaleString()} ₫</p>
-                                </div>
-                                <hr/>
-                                <div  className='inline-flex'>
-                                    <h6 style={{position:'relative', top:'10px'}}>Shipping</h6>
-                                    <p style={{marginLeft:'70px' }}>Shipping options will be updated<br/> during checkout.</p>
-                                </div>
-                                <hr/>
-                                <div className='inline-flex'>
-                                    <h5>Toltal</h5>
-                                    <h6 style={{marginLeft:'215px' }}>{total.toLocaleString()} ₫</h6>
-                                </div>
-                            </div>
                         </Col>
                     </Row>
                 </div>

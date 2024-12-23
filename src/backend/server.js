@@ -494,7 +494,6 @@ app.get('/api/products/wish-list',(req,res)=>{
     });
 })
 
-
 app.post('/api/add-comment', (req, res) => {
     const { maKh, tenKh, noiDung, avt, ngayDang, maSP, tenSP } = req.body;
     // Kiểm tra dữ liệu đầu vào

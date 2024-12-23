@@ -18,7 +18,11 @@ const WishList = () => {
     const fetchWishList = () => {
         setIsLoading(true);
         axios
-            .get(`${process.env.REACT_APP_API_URL_MARSHALL}products/wish-list`)
+            .get(`${process.env.REACT_APP_API_URL_MARSHALL}products/wish-list`, {
+                headers: {
+                    'ngrok-skip-browser-warning': 'true',
+                },
+            })
             .then(response => {
                 setProductsWishList(response.data);
                 setIsLoading(false);

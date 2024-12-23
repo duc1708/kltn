@@ -13,7 +13,11 @@ const EarsPhone = () => {
 
     // Fetch all products initially
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}products/earsphone`)
+        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}products/earsphone`, {
+            headers: {
+                'ngrok-skip-browser-warning': 'true',
+            },
+        })
             .then(response => {
                 setProductsOfCategorize(response.data);
             })
@@ -24,7 +28,11 @@ const EarsPhone = () => {
 
     // Fetch categories
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}products/categorize-earsphone`)
+        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}products/categorize-earsphone`, {
+            headers: {
+                'ngrok-skip-browser-warning': 'true',
+            },
+        })
             .then(response => {
                 setCategorizesEarsPhone(response.data);
             })
@@ -35,7 +43,11 @@ const EarsPhone = () => {
 
     // Handle "All Products" click
     const handleAllProductsClick = () => {
-        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}products/earsphone`)
+        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}products/earsphone`, {
+            headers: {
+                'ngrok-skip-browser-warning': 'true',
+            },
+        })
             .then(response => {
                 setProductsOfCategorize(response.data);
             })
@@ -46,7 +58,11 @@ const EarsPhone = () => {
 
     // Handle category click
     const handleCategoryClick = (maLoai) => {
-        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}products/earsphone`)
+        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}products/earsphone`, {
+            headers: {
+                'ngrok-skip-browser-warning': 'true',
+            },
+        })
             .then(response => {
                 const filteredProducts = response.data.filter(product => product.maLoai === maLoai);
                 setProductsOfCategorize(filteredProducts);

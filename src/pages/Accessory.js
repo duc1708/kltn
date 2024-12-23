@@ -13,7 +13,11 @@ const Accessory = () => {
     // Lấy tất cả sản phẩm phụ kiện từ API
     useEffect(() => {
         axios
-            .get(`${process.env.REACT_APP_API_URL_MARSHALL}products/phu-kien`) // Địa chỉ API của bạn
+            .get(`${process.env.REACT_APP_API_URL_MARSHALL}products/phu-kien`, {
+                headers: {
+                    'ngrok-skip-browser-warning': 'true',
+                },
+            }) // Địa chỉ API của bạn
             .then((response) => {
                 setAllProducts(response.data); // Lưu tất cả sản phẩm
                 setFilteredProducts(response.data); // Hiển thị tất cả sản phẩm ban đầu

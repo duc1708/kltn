@@ -27,11 +27,16 @@ function Home() {
                 console.error('Có lỗi khi gọi API:', error);
             });
     }, []);
+    console.log('tesst',productsHot);
 
     // Sử dụng useEffect để gọi API
     useEffect(() => {
         // Gọi API lấy sản phẩm có trangThai 'Hot'
-        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}products/loa-di-dong/new`) // Địa chỉ API của bạn
+        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}products/loa-di-dong/new`, {
+            headers: {
+                'ngrok-skip-browser-warning': 'true',
+            },
+        }) // Địa chỉ API của bạn
             .then(response => {
                 setProductsLoadidongNew(response.data);  // Cập nhật state với dữ liệu từ API
             })
@@ -42,7 +47,11 @@ function Home() {
 
     useEffect(() => {
         // Gọi API lấy sản phẩm có trangThai 'Hot'
-        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}products/loa-trong-nha/hot`) // Địa chỉ API của bạn
+        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}products/loa-trong-nha/hot`, {
+            headers: {
+                'ngrok-skip-browser-warning': 'true',
+            },
+        }) // Địa chỉ API của bạn
             .then(response => {
                 setProductsLoatrongnhaHot(response.data);  // Cập nhật state với dữ liệu từ API
             })
@@ -54,7 +63,11 @@ function Home() {
     // Gọi API lấy ra các sản phẩm của loại phụ kiện
     useEffect(() => {
         // Gọi API lấy sản phẩm có trangThai 'Hot'
-        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}products/phu-kien`) // Địa chỉ API của bạn
+        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}products/phu-kien`, {
+            headers: {
+                'ngrok-skip-browser-warning': 'true',
+            },
+        }) // Địa chỉ API của bạn
             .then(response => {
                 setProductsPhuKien(response.data);  // Cập nhật state với dữ liệu từ API
             })

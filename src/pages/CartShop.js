@@ -13,7 +13,11 @@ export default function CartShop() {
     const navigate =useNavigate('');
     // Fetch data from API
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}products/cart-shop`)
+        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}products/cart-shop`, {
+            headers: {
+                'ngrok-skip-browser-warning': 'true',
+            },
+        })
             .then(response => {
                 setCartItems(response.data);
             })
@@ -54,7 +58,7 @@ export default function CartShop() {
     const handleRemoveItem = async (productId) => {
         try {
             // Xóa sản phẩm khỏi backend
-            await axios.delete(`${process.env.REACT_APP_API_URL_MARSHALL}/cart-shop/${productId}`);
+            await axios.delete(`${process.env.REACT_APP_API_URL_MARSHALL}products/cart-shop/${productId}`);
     
             // Xóa sản phẩm khỏi state
             const updatedItems = cartItems.filter(item => item.id !== productId);

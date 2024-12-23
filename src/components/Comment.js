@@ -13,7 +13,11 @@ const Comment = () => {
     const maKh = localStorage.getItem('maKh'|| '')
     const [content, setContent] = useState('');
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}binhluan`)
+        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}binhluan`, {
+            headers: {
+                'ngrok-skip-browser-warning': 'true',
+            },
+        })
             .then(response => {
                 setListComments(response.data); // Expecting response.data to be an array
             })

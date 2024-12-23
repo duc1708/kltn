@@ -15,7 +15,11 @@ function Speakers() {
     // Lấy tất cả sản phẩm ban đầu
     useEffect(() => {
         axios
-            .get(`${process.env.REACT_APP_API_URL_MARSHALL}products/speakers`)
+            .get(`${process.env.REACT_APP_API_URL_MARSHALL}products/speakers`, {
+                headers: {
+                    'ngrok-skip-browser-warning': 'true',
+                },
+            })
             .then((response) => {
                 setAllProducts(response.data);
                 setFilteredProducts(response.data); // Hiển thị tất cả sản phẩm ban đầu
@@ -28,7 +32,11 @@ function Speakers() {
     // Lấy danh mục loa
     useEffect(() => {
         axios
-            .get(`${process.env.REACT_APP_API_URL_MARSHALL}products/categorize-speakers`)
+            .get(`${process.env.REACT_APP_API_URL_MARSHALL}products/categorize-speakers`, {
+                headers: {
+                    'ngrok-skip-browser-warning': 'true',
+                },
+            })
             .then((response) => {
                 setCategorizesSpeakers(response.data);
             })
