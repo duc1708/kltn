@@ -13,7 +13,7 @@ export default function CartShop() {
     const navigate =useNavigate('');
     // Fetch data from API
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}products/cart-shop`, {
+        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}api/products/cart-shop`, {
             headers: {
                 'ngrok-skip-browser-warning': 'true',
             },
@@ -43,7 +43,7 @@ export default function CartShop() {
 
         // Optional: Update the quantity in the backend
         try {
-            await axios.put(`${process.env.REACT_APP_API_URL_MARSHALL}products/cart-shop/${productId}`, {
+            await axios.put(`${process.env.REACT_APP_API_URL_MARSHALL}api/products/cart-shop/${productId}`, {
                 soLuong: updatedItems.find(item => item.id === productId).soLuong
             });
         } catch (error) {
@@ -58,7 +58,7 @@ export default function CartShop() {
     const handleRemoveItem = async (productId) => {
         try {
             // Xóa sản phẩm khỏi backend
-            await axios.delete(`${process.env.REACT_APP_API_URL_MARSHALL}products/cart-shop/${productId}`);
+            await axios.delete(`${process.env.REACT_APP_API_URL_MARSHALL}api/products/cart-shop/${productId}`);
     
             // Xóa sản phẩm khỏi state
             const updatedItems = cartItems.filter(item => item.id !== productId);

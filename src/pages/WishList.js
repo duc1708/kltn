@@ -18,7 +18,7 @@ const WishList = () => {
     const fetchWishList = () => {
         setIsLoading(true);
         axios
-            .get(`${process.env.REACT_APP_API_URL_MARSHALL}products/wish-list`, {
+            .get(`${process.env.REACT_APP_API_URL_MARSHALL}api/products/wish-list`, {
                 headers: {
                     'ngrok-skip-browser-warning': 'true',
                 },
@@ -36,7 +36,7 @@ const WishList = () => {
     const handleRemove = (productId) => {
         if (window.confirm("Are you sure you want to remove this product from your wishlist?")) {
             axios
-                .delete(`${process.env.REACT_APP_API_URL_MARSHALL}products/wish-list/${productId}`)
+                .delete(`${process.env.REACT_APP_API_URL_MARSHALL}api/products/wish-list/${productId}`)
                 .then(() => {
                     setProductsWishList(productsWishList.filter(item => item.id !== productId));
                 })

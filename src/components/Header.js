@@ -35,7 +35,7 @@
         const maKh = localStorage.getItem('maKh'); // Assuming `maKh` is stored as a string
 
         // Fetch data from API
-        axios.get(`http://localhost:4000/api/products/cart-shop/${maKh}`, {
+        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}api/products/cart-shop/${maKh}`, {
             headers: {
                 'ngrok-skip-browser-warning': 'true',
             },
@@ -101,7 +101,7 @@
         const handleLogin = async (e) => {
             e.preventDefault();
             try {
-                const response = await axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}accounts`, {
+                const response = await axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}api/accounts`, {
                     headers: {
                         'ngrok-skip-browser-warning': 'true',
                     },
@@ -165,7 +165,7 @@
             handleClose();
         }
         useEffect(() => {
-            axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}products`, {
+            axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}api/products`, {
                 headers: {
                     'ngrok-skip-browser-warning': 'true',
                 },

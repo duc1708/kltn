@@ -13,7 +13,7 @@ const Comment = () => {
     const maKh = localStorage.getItem('maKh'|| '')
     const [content, setContent] = useState('');
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}binhluan`, {
+        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}api/binhluan`, {
             headers: {
                 'ngrok-skip-browser-warning': 'true',
             },
@@ -50,7 +50,7 @@ const Comment = () => {
         setContent(''); // Clear the input field
     
         // Gửi request API
-        axios.post(`${process.env.REACT_APP_API_URL_MARSHALL}add-comment`, newComment)
+        axios.post(`${process.env.REACT_APP_API_URL_MARSHALL}api/add-comment`, newComment)
             .then((response) => {
                 console.log('Comment successfully posted:', response.data);
             })
@@ -91,7 +91,7 @@ const Comment = () => {
                                     {filteredComment.map((item, index) => (
                                         <div className="comment" key={index}>
                                             <div className="inline-flex">
-                                                <Image src={item.avt} roundedCircle />
+                                                <Image src={`/avatar_user/${item.avt}`} roundedCircle />
                                                 <h6>{item.tenKh}</h6>
                                                 <h6 style={{ marginLeft: '354px'}}>
                                                     {new Date(item.ngayDang).toLocaleDateString('vi-VN', {

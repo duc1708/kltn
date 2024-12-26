@@ -14,7 +14,7 @@ function Home() {
     // Sử dụng useEffect để gọi API khi component được render
     useEffect(() => {
         // Gọi API lấy sản phẩm có trangThai 'Hot'
-        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}products/hot`, {
+        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}api/products/hot`, {
             headers: {
                 'ngrok-skip-browser-warning': 'true',
             },
@@ -32,7 +32,7 @@ function Home() {
     // Sử dụng useEffect để gọi API
     useEffect(() => {
         // Gọi API lấy sản phẩm có trangThai 'Hot'
-        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}products/loa-di-dong/new`, {
+        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}api/products/loa-di-dong/new`, {
             headers: {
                 'ngrok-skip-browser-warning': 'true',
             },
@@ -47,7 +47,7 @@ function Home() {
 
     useEffect(() => {
         // Gọi API lấy sản phẩm có trangThai 'Hot'
-        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}products/loa-trong-nha/hot`, {
+        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}api/products/loa-trong-nha/hot`, {
             headers: {
                 'ngrok-skip-browser-warning': 'true',
             },
@@ -63,7 +63,7 @@ function Home() {
     // Gọi API lấy ra các sản phẩm của loại phụ kiện
     useEffect(() => {
         // Gọi API lấy sản phẩm có trangThai 'Hot'
-        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}products/phu-kien`, {
+        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}api/products/phu-kien`, {
             headers: {
                 'ngrok-skip-browser-warning': 'true',
             },

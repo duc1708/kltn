@@ -13,7 +13,7 @@ const EarsPhone = () => {
 
     // Fetch all products initially
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}products/earsphone`, {
+        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}api/products/earsphone`, {
             headers: {
                 'ngrok-skip-browser-warning': 'true',
             },
@@ -28,7 +28,7 @@ const EarsPhone = () => {
 
     // Fetch categories
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}products/categorize-earsphone`, {
+        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}api/products/categorize-earsphone`, {
             headers: {
                 'ngrok-skip-browser-warning': 'true',
             },
@@ -43,7 +43,7 @@ const EarsPhone = () => {
 
     // Handle "All Products" click
     const handleAllProductsClick = () => {
-        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}products/earsphone`, {
+        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}api/products/earsphone`, {
             headers: {
                 'ngrok-skip-browser-warning': 'true',
             },
@@ -58,7 +58,7 @@ const EarsPhone = () => {
 
     // Handle category click
     const handleCategoryClick = (maLoai) => {
-        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}products/earsphone`, {
+        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}api/products/earsphone`, {
             headers: {
                 'ngrok-skip-browser-warning': 'true',
             },

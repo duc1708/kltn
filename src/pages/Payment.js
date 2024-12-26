@@ -16,7 +16,7 @@ export default function Payment() {
     
     // Fetch data from API
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}products/cart-shop`, {
+        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}api/products/cart-shop`, {
             headers: {
                 'ngrok-skip-browser-warning': 'true',
             },
@@ -46,7 +46,7 @@ export default function Payment() {
 
         // Optional: Update the quantity in the backend
         try {
-            await axios.put(`${process.env.REACT_APP_API_URL_MARSHALL}products/cart-shop/${productId}`, {
+            await axios.put(`${process.env.REACT_APP_API_URL_MARSHALL}api/products/cart-shop/${productId}`, {
                 soLuong: updatedItems.find(item => item.id === productId).soLuong
             });
         } catch (error) {
@@ -76,11 +76,9 @@ export default function Payment() {
             tongTien: item.giaTien * item.soLuong
         }));
     
-        axios.post(`${process.env.REACT_APP_API_URL_MARSHALL}donhang_damua`, orders)
+        axios.post(`${process.env.REACT_APP_API_URL_MARSHALL}api/donhang_damua`, orders)
             .then(response => {
                 console.log('Đã thêm đơn hàng:', response.data);
-                alert('Thanh toán thành công!');
-                
                 // Xóa giỏ hàng cục bộ
                 setCartItems([]);
                 navigate('/order');
@@ -90,7 +88,7 @@ export default function Payment() {
                 alert(`Error: ${error.response ? error.response.data.message : error.message}`);
             });
         
-        axios.post(`${process.env.REACT_APP_API_URL_MARSHALL}thongkedoanhthu`, thongke)
+        axios.post(`${process.env.REACT_APP_API_URL_MARSHALL}api/thongkedoanhthu`, thongke)
             .then(response => {
             })
             .catch(error => {
@@ -123,7 +121,7 @@ export default function Payment() {
     
         try {
             // Gửi yêu cầu thanh toán online
-            const response = await axios.post('http://localhost:5000/payment', { 
+            const response = await axios.post(`${process.env.REACT_APP_API_URL_MARSHALL}api/payment`, { 
                 amount: total,
                 extraData: JSON.stringify(extraData), // Thêm thông tin đơn hàng vào extraData
             });
@@ -132,13 +130,12 @@ export default function Payment() {
             window.location.href = response.data.payUrl;
     
             // Khi thanh toán thành công, post dữ liệu giống offline
-            await axios.post(`${process.env.REACT_APP_API_URL_MARSHALL}donhang_damua`, extraData);
+            await axios.post(`${process.env.REACT_APP_API_URL_MARSHALL}api/donhang_damua`, extraData);
             console.log('Đã thêm đơn hàng:', extraData);
     
-            await axios.post(`${process.env.REACT_APP_API_URL_MARSHALL}thongkedoanhthu`, thongke);
+            await axios.post(`${process.env.REACT_APP_API_URL_MARSHALL}api/thongkedoanhthu`, thongke);
             console.log('Đã thêm thông tin thống kê:', thongke);
     
-            alert('Thanh toán thành công!');
             setCartItems([]); // Xóa giỏ hàng
             navigate('/order'); // Điều hướng đến trang đơn hàng
         } catch (error) {
@@ -150,7 +147,7 @@ export default function Payment() {
     const handleRemoveItem = async (productId) => {
         try {
             // Xóa sản phẩm khỏi backend
-            await axios.delete(`${process.env.REACT_APP_API_URL_MARSHALL}products/cart-shop/${productId}`);
+            await axios.delete(`${process.env.REACT_APP_API_URL_MARSHALL}api/products/cart-shop/${productId}`);
     
             // Xóa sản phẩm khỏi state
             const updatedItems = cartItems.filter(item => item.id !== productId);
@@ -160,9 +157,8 @@ export default function Payment() {
             alert('Có lỗi xảy ra khi xóa sản phẩm.');
         }
     };
-
     
-  return (
+    return (
     <div className='cart content'>
         <div className='wrapper'>
                 <div>

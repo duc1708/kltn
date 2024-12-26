@@ -17,7 +17,7 @@ function Register() {
   const handleRegister = async () => {
     try {
       // Check if username exists
-      const checkResponse = await axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}check-username?tenTk=${tenTk}`);
+      const checkResponse = await axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}api/check-username?tenTk=${tenTk}`);
       if (checkResponse.data.exists) {
         setShowAlertDuplicate(true);
         setTimeout(() => setShowAlertDuplicate(false), 4000);
@@ -25,7 +25,7 @@ function Register() {
       }
 
       // Proceed with registration
-      const response = await axios.post(`${process.env.REACT_APP_API_URL_MARSHALL}register`, {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL_MARSHALL}api/register`, {
         tenTk,
         matKhau,
         gmail

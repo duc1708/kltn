@@ -92,6 +92,9 @@
 
 .categorizes .list-categorize img{
     width: 50%;
+    padding-top: 20px;
+    margin-left: 10px;
+    height: 50%;
 }
 
 .categorizes .list-categorize img:hover{

@@ -13,11 +13,11 @@ const AuthPage = () => {
     // Send email with OTP
     const handleRegisterClick = async () => {
         try {
-            const response = await axios.post(`${process.env.REACT_APP_API_URL_MARSHALL}checkEmail/register`, { email });
+            const response = await axios.post(`${process.env.REACT_APP_API_URL_MARSHALL}api/checkEmail/register`, { email });
             
             if (response.status === 200) {
                 // Email is available for registration, send OTP
-                const otpResponse = await axios.post('http://localhost:3001/sendMail', { email });
+                const otpResponse = await axios.post(`${process.env.REACT_APP_API_URL_MARSHALL}api/sendMail`, { email });
                 if (otpResponse.status === 200) {
                     setOtpSent(true);
                     alert('OTP has been sent to your email.');
@@ -38,7 +38,7 @@ const AuthPage = () => {
     // Verify OTP entered by the user
     const handleOtpVerify = async () => {
         try {
-            const response = await axios.post('http://localhost:3001/verifyOtp', { email, otp });
+            const response = await axios.post(`${process.env.REACT_APP_API_URL_MARSHALL}api/verifyOtp`, { email, otp });
             if (response.status === 200) {
                 setOtpVerified(true); // OTP verified successfully
                 alert('OTP verified successfully! Redirecting to account setup...');

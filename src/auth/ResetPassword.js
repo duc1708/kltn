@@ -19,7 +19,7 @@ function ResetPassword() {
 
     try {
       const email = localStorage.getItem('gmail'); 
-      const response = await axios.post(`${process.env.REACT_APP_API_URL_MARSHALL}resetPassword`, {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL_MARSHALL}api/resetPassword`, {
         email,
         newPassword: password,
       });

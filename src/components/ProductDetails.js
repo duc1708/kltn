@@ -41,7 +41,7 @@ function ProductDetail({ setCartItems, setProductsWishList }) {
     }, []);
     useEffect(() => {
         // Gọi API để lấy danh sách sản phẩm
-        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}products`, {
+        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}api/products`, {
             headers: {
                 'ngrok-skip-browser-warning': 'true',
             },
@@ -60,7 +60,7 @@ function ProductDetail({ setCartItems, setProductsWishList }) {
 
     useEffect(() => {
         // Gọi API để lấy thông số kỹ thuật
-        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}thong-so-ky-thuat`, {
+        axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}api/thong-so-ky-thuat`, {
             headers: {
                 'ngrok-skip-browser-warning': 'true',
             },
@@ -117,11 +117,11 @@ function ProductDetail({ setCartItems, setProductsWishList }) {
             tenKh: tenKh
         };
 
-        axios.post(`${process.env.REACT_APP_API_URL_MARSHALL}donhang_dadat`, orderData)
+        axios.post(`${process.env.REACT_APP_API_URL_MARSHALL}api/donhang_dadat`, orderData)
             .then(response => {
                 console.log('Đã thêm đơn hàng:', response.data);
                 alert('Đã thêm sản phẩm vào giỏ hàng');
-                axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}products/cart-shop`, {
+                axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}api/products/cart-shop`, {
                     headers: {
                         'ngrok-skip-browser-warning': 'true',
                     },
@@ -157,10 +157,10 @@ function ProductDetail({ setCartItems, setProductsWishList }) {
             sao
         };
 
-        axios.post(`${process.env.REACT_APP_API_URL_MARSHALL}sanpham-yeuthich`, wishlistData)
+        axios.post(`${process.env.REACT_APP_API_URL_MARSHALL}api/sanpham-yeuthich`, wishlistData)
             .then(response => {
                 alert('Đã thêm sản phẩm danh sách yêu thích');
-                axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}products/sanpham-yeuthich`, {
+                axios.get(`${process.env.REACT_APP_API_URL_MARSHALL}api/products/sanpham-yeuthich`, {
                     headers: {
                         'ngrok-skip-browser-warning': 'true',
                     },

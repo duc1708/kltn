@@ -7,6 +7,7 @@ import '../assets/styles/auth.css';
 
 const Dashboard = () => {
     const [tenKh, setTenKh] = useState('');
+    const [sdt, setSdt] = useState('')
     const [avt, setAvt] = useState('');
     const [diaChi, setDiaChi] = useState('');
     const [gmail, setGmail] = useState('');
@@ -23,6 +24,7 @@ const Dashboard = () => {
         setAvt(localStorage.getItem('avt') || '');
         setGmail(localStorage.getItem('gmail') || '');
         setDiaChi(localStorage.getItem('diaChi') ||'')
+        setSdt(localStorage.getItem('sdt' || ''));
     }, []);
     const handleImageChange = (e) => {
         const selectedFile = e.target.files[0]; // Lấy file đầu tiên được chọn
@@ -43,7 +45,8 @@ const Dashboard = () => {
             tenKh,
             avt,
             gmail,
-            diaChi
+            diaChi,
+            sdt
         };
 
         // Handle password change logic
@@ -62,7 +65,7 @@ const Dashboard = () => {
 
             try {
                 // Verify old password with backend
-                const response = await axios.post(`${process.env.REACT_APP_API_URL_MARSHALL}checkPassword`, { gmail, oldPassword });
+                const response = await axios.post(`${process.env.REACT_APP_API_URL_MARSHALL}api/checkPassword`, { gmail, oldPassword });
                 console.log('CheckPassword response:', response.data);
 
                 if (response.status === 200) {
@@ -70,7 +73,7 @@ const Dashboard = () => {
                     updatedData.matKhau = newPassword;
 
                     // Proceed with profile update
-                    const updateResponse = await axios.post(`${process.env.REACT_APP_API_URL_MARSHALL}updateProfile`, updatedData);
+                    const updateResponse = await axios.post(`${process.env.REACT_APP_API_URL_MARSHALL}api/updateProfile`, updatedData);
 
                     if (updateResponse.status === 200) {
                         // alert('Cập nhật thành công!');
@@ -87,7 +90,7 @@ const Dashboard = () => {
         } else {
             // Proceed to update without password change
             try {
-                const response = await axios.post(`${process.env.REACT_APP_API_URL_MARSHALL}updateProfile`, updatedData);
+                const response = await axios.post(`${process.env.REACT_APP_API_URL_MARSHALL}api/updateProfile`, updatedData);
                 if (response.status === 200) {
                 }
             } catch (error) {
@@ -104,7 +107,7 @@ const Dashboard = () => {
 
             try {
                 // Gửi file lên server và cập nhật đường dẫn ảnh trong cơ sở dữ liệu
-                const response = await axios.post(`${process.env.REACT_APP_API_URL_MARSHALL}updateAvatar`, formData, {
+                const response = await axios.post(`${process.env.REACT_APP_API_URL_MARSHALL}api/updateAvatar`, formData, {
                     headers: { 'Content-Type': 'multipart/form-data' },
                 });
                 if (response.status === 200) {
@@ -117,7 +120,7 @@ const Dashboard = () => {
 
         // Cập nhật thông tin người dùng không có thay đổi ảnh
         try {
-            const response = await axios.post(`${process.env.REACT_APP_API_URL_MARSHALL}updateProfile`, updatedData);
+            const response = await axios.post(`${process.env.REACT_APP_API_URL_MARSHALL}api/updateProfile`, updatedData);
             if (response.status === 200) {
                 setShowAlertSuccess(true); // Show alert on successful login
                 setTimeout(() => setShowAlertSuccess(false), 2000); // Hide alert after 2 seconds
@@ -128,7 +131,6 @@ const Dashboard = () => {
         }
     };
 
-    console.log('url',avt)
 
     return (
         <div className='dashboard content'>
@@ -172,6 +174,14 @@ const Dashboard = () => {
                                         type="text"
                                         value={tenKh || ""}
                                         onChange={(e) => setTenKh(e.target.value)}
+                                    />
+                                </Form.Group>
+                                <Form.Group className="mb-3">
+                                    <Form.Label>Số điện thoại</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        value={sdt || ""}
+                                        onChange={(e) => setSdt(e.target.value)}
                                     />
                                 </Form.Group>
                                 <Form.Group className="mb-3">

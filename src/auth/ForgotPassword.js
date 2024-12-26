@@ -18,10 +18,10 @@ const ForgotPassword = () => {
     const handleRegisterClick = async () => {
         try {
             // Check if the email exists in the database
-            const response = await axios.post(`${process.env.REACT_APP_API_URL_MARSHALL}checkEmail`, { email });
+            const response = await axios.post(`${process.env.REACT_APP_API_URL_MARSHALL}api/checkEmail`, { email });
             if (response.status === 200) {
                 localStorage.setItem('gmail', email);
-                const otpResponse = await axios.post('http://localhost:3001/sendMail', { email });
+                const otpResponse = await axios.post(`${process.env.REACT_APP_API_URL_MARSHALL}api/sendMail`, { email });
                 if (otpResponse.status === 200) {
                     setOtpSent(true); 
                     setShowAlertSuccess(true);
@@ -46,7 +46,7 @@ const ForgotPassword = () => {
     // Verify OTP entered by the user
     const handleOtpVerify = async () => {
         try {
-            const response = await axios.post('http://localhost:3001/verifyOtp', { email, otp });
+            const response = await axios.post(`${process.env.REACT_APP_API_URL_MARSHALL}api/verifyOtp`, { email, otp });
             if (response.status === 200) {
                 setShowAlertSuccessPass(true);
                 setTimeout(()=> setShowAlertSuccessPass(false), 4000);

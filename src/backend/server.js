@@ -2,10 +2,17 @@ const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
 const app = express();
+const nodemailer = require('nodemailer');
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
+const crypto = require('crypto');
+const axios = require("axios");
+app.use(express.urlencoded({ extended: true }));
 // const fs = require('fs');
 const path = require('path');
 app.use(cors());
 app.use(express.json());
+const otpStorage = {};
 
 // Kết nối MySQL
 const db = mysql.createConnection({
@@ -15,6 +22,54 @@ const db = mysql.createConnection({
     database: 'ecom-marshall' // tên database
 });
 
+
+app.post('/api/sendMail', async (req, res) => {
+    const { email } = req.body;
+
+    // Generate a random 6-digit OTP
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+
+    // Store OTP for this email
+    otpStorage[email] = otp;
+
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'duc170803@gmail.com',
+            pass: 'szld uxjg haqn fciy' // Use an app-specific password
+        },
+        secure: true
+    });
+
+    const mailOptions = {
+        from: 'duc170803@gmail.com',
+        to: email,
+        subject: 'Mã OTP đăng ký tài khoản website Marshall',
+        text: `Mã OTP dùng để đăng ký tài khoản là: ${otp}`
+    };
+
+    transporter.sendMail(mailOptions, function(error, info) {
+        if (error) {
+            console.log("Error sending email:", error);
+            res.status(500).send('Error sending email');
+        } else {
+            console.log('Email sent: ' + info.response);
+            res.status(200).send('OTP sent successfully');
+        }
+    });
+});
+
+app.post('/api/verifyOtp', (req, res) => {
+    const { email, otp } = req.body;
+
+    // Check if the OTP matches for the given email
+    if (otpStorage[email] === otp) {
+        delete otpStorage[email]; // Remove OTP after successful verification
+        res.status(200).send('OTP verified');
+    } else {
+        res.status(400).send('Invalid OTP');
+    }
+});
 
 // Lấy tất cả sản phẩm
 app.get('/api/products', (req,res)=>{
@@ -248,17 +303,17 @@ app.post('/api/checkPassword', (req, res) => {
 
 // API cập nhật thông tin người dùng và mật khẩu mới
 app.post('/api/updateProfile', (req, res) => {
-    const { tenKh, avt, gmail, diaChi, matKhau } = req.body;  // Lấy matKhau từ request body
-    if (!tenKh || !avt || !diaChi || !gmail) {
+    const { tenKh,sdt, avt, gmail, diaChi, matKhau } = req.body;  // Lấy matKhau từ request body
+    if (!tenKh || !sdt || !avt || !diaChi || !gmail) {
         return res.status(400).send('All fields are required');
     }
 
-    let query = 'UPDATE khachhang SET tenKh = ?, avt = ?, diaChi = ? WHERE gmail = ?';
-    let values = [tenKh, avt, diaChi, gmail];
+    let query = 'UPDATE khachhang SET tenKh = ?,sdt=?, avt = ?, diaChi = ? WHERE gmail = ?';
+    let values = [tenKh,sdt, avt, diaChi, gmail];
 
     if (matKhau) {
-        query = 'UPDATE khachhang SET tenKh = ?, avt = ?, diaChi = ?, matKhau = ? WHERE gmail = ?';
-        values = [tenKh, avt, diaChi, matKhau, gmail];
+        query = 'UPDATE khachhang SET tenKh = ?, sdt=?, avt = ?, diaChi = ?, matKhau = ? WHERE gmail = ?';
+        values = [tenKh,sdt, avt, diaChi, matKhau, gmail];
     }
 
     db.query(query, values, (err, result) => {
@@ -620,6 +675,128 @@ app.post('/api/thongkedoanhthu', async (req, res) => {
     }
 });
 
+
+app.post("/api/payment", async (req, res) => {
+    try {
+        const accessKey = 'F8BBA842ECF85';
+        const secretKey = 'K951B6PE1waDMi640xX08PD3vg6EkVlz';
+        const orderInfo = 'pay with MoMo';
+        const partnerCode = 'MOMO';
+        const redirectUrl = `${process.env.REACT_APP_API_URL_MARSHALL_WEB}/order`; // Update this to your frontend URL
+        const ipnUrl = `${process.env.REACT_APP_API_URL_MARSHALL}api/callback`;
+        const requestType = "payWithMethod";
+        const amount = req.body.amount;
+        const orderId = partnerCode + new Date().getTime();
+        const requestId = orderId;
+        const extraData = '';
+        const orderGroupId = '';
+        const autoCapture = true;
+        const lang = 'vi';
+
+        if (amount < 1000 || amount > 50000000) {
+            return res.status(400).json({
+                statusCode: 400,
+                message: "Amount must be between 1000 and 500000000 VND",
+            });
+        }
+
+        const rawSignature = `accessKey=${accessKey}&amount=${amount}&extraData=${extraData}&ipnUrl=${ipnUrl}&orderId=${orderId}&orderInfo=${orderInfo}&partnerCode=${partnerCode}&redirectUrl=${redirectUrl}&requestId=${requestId}&requestType=${requestType}`;
+        const signature = crypto.createHmac('sha256', secretKey)
+            .update(rawSignature)
+            .digest('hex');
+
+        const requestBody = {
+            partnerCode: partnerCode,
+            partnerName: "Test",
+            storeId: "MomoTestStore",
+            requestId: requestId,
+            amount: amount,
+            orderId: orderId,
+            orderInfo: orderInfo,
+            redirectUrl: redirectUrl,
+            ipnUrl: ipnUrl,
+            lang: lang,
+            requestType: requestType,
+            autoCapture: autoCapture,
+            extraData: extraData,
+            orderGroupId: orderGroupId,
+            signature: signature
+        };
+
+        const option = {
+            method: "POST",
+            url: "https://test-payment.momo.vn/v2/gateway/api/create",
+            headers: {
+                'Content-Type': 'application/json',
+                'Content-Length': Buffer.byteLength(JSON.stringify(requestBody))
+            },
+            data: requestBody
+        };
+
+        const result = await axios(option);
+        if (result.data.resultCode !== 0) {
+            return res.status(400).json({
+                statusCode: 400,
+                message: result.data.message,
+                data: result.data
+            });
+        }
+
+        return res.status(200).json({ payUrl: result.data.payUrl });
+    } catch (error) {
+        return res.status(500).json({
+            statusCode: 500,
+            message: "Server error",
+            error: error.response ? error.response.data : error.message
+        });
+    }
+});
+
+
+app.post("/api/callback", async (req, res) => {
+    try {
+        console.log("Callback received:", req.body);
+
+        // Kiểm tra trạng thái giao dịch
+        const { resultCode, orderId, extraData } = req.body;
+
+        if (resultCode === 0) { // resultCode === 0 nghĩa là giao dịch thành công
+            console.log("Payment successful for orderId:", orderId);
+
+            // Parse extraData (nếu extraData chứa thông tin cần thiết)
+            const cartItems = JSON.parse(extraData);
+
+            // Chuẩn bị dữ liệu để thêm vào bảng `donhang_damua`
+            const donHangDaMua = cartItems.map(item => ({
+                maKh: item.maKh,
+                maSP: item.maSP,
+                tenSp: item.tenSp,
+                anhDD: item.anhDD,
+                soLuong: item.soLuong,
+                giaTien: item.giaTien,
+                ngayDat: new Date().toISOString(),
+                diaChi: item.diaChi,
+                sdt: item.sdt,
+            }));
+
+            // Thêm dữ liệu vào `donhang_damua`
+            await axios.post(`${process.env.REACT_APP_API_URL_MARSHALL}donhang_damua`, donHangDaMua);
+
+            // Xóa dữ liệu khỏi `donhang_dadat` (giả sử orderId liên kết với đơn hàng trong `donhang_dadat`)
+            await axios.delete(`${process.env.REACT_APP_API_URL_MARSHALL}donhang_dadat/${orderId}`);
+
+            console.log("Order moved to donhang_damua and removed from donhang_dadat.");
+        } else {
+            console.error("Payment failed with resultCode:", resultCode);
+        }
+
+        // Trả về phản hồi thành công cho MoMo
+        res.status(200).send("Callback processed successfully.");
+    } catch (error) {
+        console.error("Error processing callback:", error);
+        res.status(500).send("Internal server error.");
+    }
+});
 app.listen(4000, () => {
     console.log('Server running at port 4000');
 });
